@@ -81,6 +81,62 @@ namespace ReportModifier
         } // End Function GetReportNamespaceManager
 
 
+
+        // /dft:Report/dft:DataSets/dft:DataSet[1]
+
+        public static System.Collections.Generic.List<string> GetDataSets(string strFilename)
+        {
+            System.Xml.XmlDocument doc = XmlTools.File2XmlDocument(strFilename);
+            System.Xml.XmlNamespaceManager nsmgr = GetReportNamespaceManager(doc);
+
+            return GetDataSets(doc);
+        } // End Function GetDataSets
+
+
+        public static System.Collections.Generic.List<string> GetDataSets(System.Xml.XmlDocument doc)
+        {
+            System.Collections.Generic.List<string> ls = new System.Collections.Generic.List<string>();
+
+            System.Xml.XmlNamespaceManager nsmgr = GetReportNamespaceManager(doc);
+            System.Xml.XmlNodeList xnProc = doc.SelectNodes("/dft:Report/dft:DataSets/dft:DataSet", nsmgr);
+
+            foreach (System.Xml.XmlNode ds in xnProc)
+            {
+                string name = ds.Attributes["Name"].Value;
+                ls.Add(name);
+            }
+
+            return ls;
+        } // End Function GetDataSets
+
+
+        public static System.Collections.Generic.List<string> GetParameters(string strFilename)
+        {
+            System.Xml.XmlDocument doc = XmlTools.File2XmlDocument(strFilename);
+            System.Xml.XmlNamespaceManager nsmgr = GetReportNamespaceManager(doc);
+
+            return GetParameters(doc);
+        } // End Function GetParameters
+
+
+        public static System.Collections.Generic.List<string> GetParameters(System.Xml.XmlDocument doc)
+        {
+            System.Collections.Generic.List<string> ls = new System.Collections.Generic.List<string>();
+
+            System.Xml.XmlNamespaceManager nsmgr = GetReportNamespaceManager(doc);
+            System.Xml.XmlNodeList xnProc = doc.SelectNodes("/dft:Report/dft:ReportParameters/dft:ReportParameter", nsmgr);
+
+            foreach (System.Xml.XmlNode ds in xnProc)
+            {
+                string name = ds.Attributes["Name"].Value;
+                ls.Add(name);
+            }
+
+            return ls;
+        } // End Function GetParameters
+
+
+
         public static bool HasDataSet(string strFilename, string dataSetName)
         {
             System.Xml.XmlDocument doc = XmlTools.File2XmlDocument(strFilename);

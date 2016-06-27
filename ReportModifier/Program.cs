@@ -373,6 +373,10 @@ namespace ReportModifier
         [STAThread]
         static void Main()
         {
+            // ReportServerTools.GetDataSets(@"D:\Stefan.Steiger\Documents\Visual Studio 2013\TFS\COR-FM-Suite\Portal_2014\Portal_Reports\LeaseContractForm.rdl");
+            // ReportServerTools.GetParameters(@"D:\Stefan.Steiger\Documents\Visual Studio 2013\TFS\COR-FM-Suite\Portal_2014\Portal_Reports\LeaseContractForm.rdl");
+
+
             ViewDependencies();
             return;
 
